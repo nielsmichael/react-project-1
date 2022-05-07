@@ -10,7 +10,19 @@ const AddUser = (props) => {
 
   const addUserHandler = (e) => {
     e.preventDefault();
-    console.log(enteredUsername, enteredAge);
+    // Check if both inputs are blank
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+    // Check if age is invalid
+    if (+enteredAge < 1) {
+      // + sign ensures js evaluates enteredAge as a number and NOT a string
+      return;
+    }
+    console.log(enteredUsername, enteredAge); // Log for now
+    // Reset Inputs
+    setEnteredUsername("");
+    setEnteredAge("");
   };
 
   const usernameChangeHandler = (e) => {
@@ -19,7 +31,7 @@ const AddUser = (props) => {
   };
 
   const ageChangeHandler = (e) => {
-    // Set username
+    // Set age
     setEnteredAge(e.target.value);
   };
 
@@ -30,10 +42,16 @@ const AddUser = (props) => {
         <input
           id="username"
           type="text"
+          value={enteredUsername}
           onChange={usernameChangeHandler}
         ></input>
         <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler}></input>
+        <input
+          id="age"
+          type="number"
+          value={enteredAge}
+          onChange={ageChangeHandler}
+        ></input>
         <Button type="submit">Add User</Button>
       </form>
     </Card>
