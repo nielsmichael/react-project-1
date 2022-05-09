@@ -8,8 +8,6 @@ const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
-  // Test
-
   const addUserHandler = (e) => {
     e.preventDefault();
     // Check if both inputs are blank
