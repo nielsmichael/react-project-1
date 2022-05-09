@@ -9,7 +9,7 @@ const AddUser = (props) => {
   const [enteredAge, setEnteredAge] = useState("");
 
   const addUserHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevent page reload
     // Check if both inputs are blank
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       return;
@@ -20,6 +20,10 @@ const AddUser = (props) => {
       return;
     }
     console.log(enteredUsername, enteredAge); // Log for now
+
+    // Lift state up to App.js so that list of users can be passed down to the UsersList component to be rendered
+    props.onAddUser(enteredUsername, enteredAge);
+
     // Reset Inputs
     setEnteredUsername("");
     setEnteredAge("");
